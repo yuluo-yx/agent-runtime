@@ -22,7 +22,6 @@ on:
 
 jobs:
   actbot:
-    if: (github.repository == 'alibaba/spring-ai-alibaba')
     runs-on: ubuntu-22.04
     permissions:
       pull-requests: write
