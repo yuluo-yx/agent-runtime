@@ -1,0 +1,148 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package com.alibaba.cloud.ai.agent.runtime;
+
+import java.io.File;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Define the Agent Runtime Config Schema.
+ *
+ * @author yuluo
+ * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
+ */
+
+public final class AgentRuntimeSchema implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 8068509879445395354L;
+
+    /**
+     * Agent Name
+     */
+    private String name;
+
+    /**
+     * Agent Version
+     */
+    private String version;
+
+    /**
+     * Agent Description
+     */
+    private String description;
+
+    /**
+     * Agent Framework.
+     * e.g. LangGraph, Spring AI Alibaba Graph, AutoGen, etc.
+     */
+    private String framework;
+
+    /**
+     * Agent Environment.
+     */
+    private List<Map<String, String>> envs;
+
+    public List<Map<String, String>> getEnvs() {
+        return envs;
+    }
+
+    public void setEnvs(List<Map<String, String>> envs) {
+        this.envs = envs;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFramework() {
+        return framework;
+    }
+
+    public void setFramework(String framework) {
+        this.framework = framework;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder {
+
+        private final AgentRuntimeSchema agentRuntimeSchema;
+
+        public Builder() {
+            this.agentRuntimeSchema = new AgentRuntimeSchema();
+        }
+
+        public Builder name(String name) {
+            this.agentRuntimeSchema.setName(name);
+            return this;
+        }
+
+        public Builder version(String version) {
+            this.agentRuntimeSchema.setVersion(version);
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.agentRuntimeSchema.setDescription(description);
+            return this;
+        }
+
+        public Builder framework(String framework) {
+            this.agentRuntimeSchema.setFramework(framework);
+            return this;
+        }
+
+        public Builder envs(List<Map<String, String>> envs) {
+            this.agentRuntimeSchema.setEnvs(envs);
+            return this;
+        }
+
+        public AgentRuntimeSchema build() {
+            return this.agentRuntimeSchema;
+        }
+    }
+
+}

@@ -1,0 +1,155 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+syntax = "proto3";
+
+package sandbox.v1;
+
+import "google/api/annotations.proto";
+import "common/common.proto";
+
+option go_package = "agent/sandbox/api/sandbox/v1;v1";
+option java_multiple_files = true;
+option java_package = "com.alibaba.cloud.ai.agent.runtime.sandbox";
+
+service SandboxService {
+
+  rpc CreateSandbox(CreateSandboxRequest) returns (CreateSandboxResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/sandbox",
+      body: "*",
+    };
+  };
+
+  rpc DeleteSandbox(DeleteSandboxRequest) returns (DeleteSandboxResponse) {
+    option (google.api.http) = {
+      delete: "/api/v1/sandbox"
+    };
+  }
+
+  rpc GetSandboxStatus(GetSandboxStatusRequest) returns (GetSandboxStatusResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/sandbox"
+    };
+  };
+
+  rpc GetSandBoxTypes(GetSandboxTypesRequest) returns (GetSandboxTypesResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/sandbox/types"
+    };
+  };
+
+}
+
+message CreateSandboxRequest {
+
+  // The type of the sandbox, e.g. "fs", "browser", etc.
+  SandBoxType sandbox_type = 3;
+
+  // The configuration of the sandbox, which is a JSON string.
+  Config config = 4;
+}
+
+message CreateSandboxResponse {
+
+  message Data {
+    string sandbox_id = 1;
+    SandboxState state = 2;
+  }
+
+  Data data = 1;
+  common.Status status = 2;
+}
+
+message DeleteSandboxRequest {
+
+  string sandbox_id = 1;
+}
+
+message DeleteSandboxResponse {
+
+  common.Status status = 1;
+}
+
+message GetSandboxStatusRequest {
+
+  string sandbox_id = 1;
+}
+
+message GetSandboxStatusResponse {
+
+  message Data {
+    SandboxState state = 1;
+    string sandbox_id = 2;
+    SandBoxType sandbox_type = 3;
+    Config config = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    string error_message = 7;
+  }
+
+  Data data = 1;
+  common.Status status = 2;
+}
+
+message GetSandboxTypesRequest {
+}
+
+message GetSandboxTypesResponse {
+
+  message Data {
+    repeated SandBoxType sandbox_types = 1;
+  }
+
+  Data data = 1;
+  common.Status status = 2;
+}
+
+// ================== SangBox Config ==================
+
+message Config {
+
+  RuntimeType runtimeType = 1;
+}
+
+enum LifeCycle {
+  LIFECYCLE_UNKNOWN = 0;
+  LIFECYCLE_ALWAYS = 1;
+  LIFECYCLE_ONCE = 2;
+}
+
+enum SandboxState {
+  SANDBOX_STATE_UNKNOWN = 0;
+  SANDBOX_STATE_CREATING = 1;
+  SANDBOX_STATE_RUNNING = 2;
+  SANDBOX_STATE_DELETING = 3;
+  SANDBOX_STATE_DELETED = 4;
+  SANDBOX_STATE_ERROR = 5;
+}
+
+enum SandBoxType {
+  SANDBOX_TYPE_Base = 0;
+  SANDBOX_TYPE_FS = 1;
+  SANDBOX_TYPE_BROWSER = 2;
+  SANDBOX_TYPE_CUSTOM = 3;
+}
+
+enum RuntimeType {
+  RUNTIME_TYPE_Containerd = 0;
+  RUNTIME_TYPE_DOCKER = 1;
+  RUNTIME_TYPE_K8S = 2;
+}
