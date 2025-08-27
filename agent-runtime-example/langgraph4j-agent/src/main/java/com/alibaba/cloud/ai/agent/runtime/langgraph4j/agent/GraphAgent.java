@@ -32,6 +32,8 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
+ * LangGraph4j Agent Application.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
@@ -50,47 +52,48 @@ public class GraphAgent {
 
                 .compile();
     }
-}
 
-class SetIdNode implements NodeAction<State> {
+    static class SetIdNode implements NodeAction<State> {
 
-    @Override
-    public Map<String, Object> apply(State state) throws Exception {
+        @Override
+        public Map<String, Object> apply(final State state) throws Exception {
 
-        String id = state.data().get("id").toString();
-        if (id.isEmpty()) {
-            throw new RuntimeException("input id is null");
+            String id = state.data().get("id").toString();
+            if (id.isEmpty()) {
+                throw new RuntimeException("input id is null");
+            }
+
+            return Map.of("id", id);
+        }
+    }
+
+    static class ReverseIdNode implements NodeAction<State> {
+
+        @Override
+        public Map<String, Object> apply(final State state) throws Exception {
+
+            if (state.next().get().toString().isEmpty()) {
+                throw new RuntimeException("input id is null");
+            }
+
+            return Map.of("id", new StringBuilder(state.next().get().toString()).reverse().toString());
+        }
+    }
+
+    static class State extends MessagesState<String> {
+
+        State(final Map<String, Object> initData) {
+            super(initData);
         }
 
-        return Map.of("id", id);
-    }
-}
-
-class State extends MessagesState<String> {
-
-    public Optional<String> next() {
-        return this.value("id");
-    }
-
-    public State(Map<String, Object> initData) {
-        super(initData);
-    }
-
-    public static StateSerializer<State> serializer() {
-
-        return new LC4jStateSerializer<>(State::new);
-    }
-}
-
-class ReverseIdNode implements NodeAction<State> {
-
-    @Override
-    public Map<String, Object> apply(State state) throws Exception {
-
-        if (state.next().get().toString().isEmpty()) {
-            throw new RuntimeException("input id is null");
+        public Optional<String> next() {
+            return this.value("id");
         }
 
-        return Map.of("id", new StringBuilder(state.next().get().toString()).reverse().toString());
+        public static StateSerializer<State> serializer() {
+
+            return new LC4jStateSerializer<>(State::new);
+        }
     }
+
 }

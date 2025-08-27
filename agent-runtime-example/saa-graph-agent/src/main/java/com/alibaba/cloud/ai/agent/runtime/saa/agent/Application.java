@@ -23,16 +23,16 @@ import com.alibaba.cloud.ai.graph.exception.GraphRunnerException;
 import com.alibaba.cloud.ai.graph.exception.GraphStateException;
 
 import java.util.Map;
-import java.util.Optional;
 
 /**
+ * Spring AI Alibaba Graph Agent Application.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public class Application {
 
-    public static void main(String[] args) throws GraphStateException, GraphRunnerException {
+    public static void main(final String[] args) throws GraphStateException, GraphRunnerException {
 
         new GraphAgent().graph()
                 .invoke(Map.of("id", "test-saa-graph-id"))

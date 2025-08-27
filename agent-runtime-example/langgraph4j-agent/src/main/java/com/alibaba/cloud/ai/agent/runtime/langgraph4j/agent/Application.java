@@ -24,13 +24,14 @@ import org.bsc.langgraph4j.GraphStateException;
 import java.util.Map;
 
 /**
+ * LangGraph4j Agent Application.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public class Application {
 
-    public static void main(String[] args) throws GraphStateException {
+    public static void main(final String[] args) throws GraphStateException {
 
         new GraphAgent().graph()
                 .invoke(Map.of("id", "test-langgrap4j-id"))

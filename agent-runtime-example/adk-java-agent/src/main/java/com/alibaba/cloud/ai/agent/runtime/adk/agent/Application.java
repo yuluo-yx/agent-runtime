@@ -44,43 +44,44 @@ import com.google.adk.sessions.Session;
 import com.google.genai.types.Content;
 import com.google.genai.types.Part;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.ollama.OllamaChatModel;
 import io.reactivex.rxjava3.core.Flowable;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
+ * ADK Java Agent Application.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public class Application {
 
-    private static final BaseAgent agent = initAgent();
+    private static final BaseAgent AGENT = initAgent();
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
-        InMemoryRunner runner = new InMemoryRunner(agent);
+        InMemoryRunner runner = new InMemoryRunner(AGENT);
         String userId = "user1";
         Session session = runner.sessionService()
                 .createSession("ADK Test Agent", userId)
                 .blockingGet();
 
         Runtime.getRuntime().addShutdownHook(new Thread(
-                () -> System.out.println("\n ✅ Bye!"))
+                () -> System.out.println("\nBye!"))
         );
 
         try (Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8)) {
             while (true) {
-                System.out.print("\n \uD83E\uDD14 You > ");
+                System.out.print("\nYou > ");
                 String userInput = scanner.nextLine();
                 if ("quit".equalsIgnoreCase(userInput)) {
                     break;
                 }
                 Content content = Content.fromParts(Part.fromText(userInput));
                 Flowable<Event> events = runner.runAsync(session.userId(), session.id(), content);
-                System.out.print("\n \uD83D\uDE80 Agent > ");
+                System.out.print("\nAgent > ");
                 events.blockingForEach(event -> System.out.println(event.stringifyContent()));
             }
         }
@@ -88,8 +89,7 @@ public class Application {
 
     private static BaseAgent initAgent() {
 
-        ChatModel chatModel = OpenAiChatModel.builder()
-                .apiKey(System.getenv("AI_DASHSCOPE_API_KEY"))
+        ChatModel chatModel = OllamaChatModel.builder()
                 .baseUrl("https://dashscope.aliyuncs.com/compatible-mode")
                 .modelName("qwen-plus")
                 .build();

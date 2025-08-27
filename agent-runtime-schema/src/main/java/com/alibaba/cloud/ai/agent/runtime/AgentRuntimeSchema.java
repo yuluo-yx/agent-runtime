@@ -19,7 +19,6 @@
 
 package com.alibaba.cloud.ai.agent.runtime;
 
-import java.io.File;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
@@ -31,24 +30,23 @@ import java.util.Map;
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public final class AgentRuntimeSchema implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 8068509879445395354L;
 
     /**
-     * Agent Name
+     * Agent Name.
      */
     private String name;
 
     /**
-     * Agent Version
+     * Agent Version.
      */
     private String version;
 
     /**
-     * Agent Description
+     * Agent Description.
      */
     private String description;
 
@@ -67,7 +65,7 @@ public final class AgentRuntimeSchema implements Serializable {
         return envs;
     }
 
-    public void setEnvs(List<Map<String, String>> envs) {
+    public void setEnvs(final List<Map<String, String>> envs) {
         this.envs = envs;
     }
 
@@ -75,7 +73,7 @@ public final class AgentRuntimeSchema implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -83,7 +81,7 @@ public final class AgentRuntimeSchema implements Serializable {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(final String version) {
         this.version = version;
     }
 
@@ -91,7 +89,7 @@ public final class AgentRuntimeSchema implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -99,7 +97,7 @@ public final class AgentRuntimeSchema implements Serializable {
         return framework;
     }
 
-    public void setFramework(String framework) {
+    public void setFramework(final String framework) {
         this.framework = framework;
     }
 
@@ -115,27 +113,27 @@ public final class AgentRuntimeSchema implements Serializable {
             this.agentRuntimeSchema = new AgentRuntimeSchema();
         }
 
-        public Builder name(String name) {
+        public Builder name(final String name) {
             this.agentRuntimeSchema.setName(name);
             return this;
         }
 
-        public Builder version(String version) {
+        public Builder version(final String version) {
             this.agentRuntimeSchema.setVersion(version);
             return this;
         }
 
-        public Builder description(String description) {
+        public Builder description(final String description) {
             this.agentRuntimeSchema.setDescription(description);
             return this;
         }
 
-        public Builder framework(String framework) {
+        public Builder framework(final String framework) {
             this.agentRuntimeSchema.setFramework(framework);
             return this;
         }
 
-        public Builder envs(List<Map<String, String>> envs) {
+        public Builder envs(final List<Map<String, String>> envs) {
             this.agentRuntimeSchema.setEnvs(envs);
             return this;
         }

@@ -10,6 +10,13 @@
 	<suppress files="org[\\/]eclipse[\\/]jdt[\\/]internal[\\/]formatter[\\/]linewrap[\\/]WrapPreparator\.java" checks="[a-zA-Z0-9]*" />
 
 	<!-- A list of class files that need to be suppressed -->
-	<suppress files="NacosMcpRegistryProperties.java" checks="FinalClass"/>
+	<suppress files="LangChain4j.java" checks="FinalClass"/>
+	<suppress files="LangChain4j.java" checks="FinalParameters"/>
+	<suppress files="LangChain4j.java" checks="MethodLength"/>
+	<suppress files="LangChain4j.java" checks="RegexpSinglelineJava"/>
+	<suppress files="LangChain4j.java" checks="ConstantName"/>
+	<suppress files="LangChain4j.java" checks="EmptyLineSeparator"/>
+	<suppress files="LangChain4j.java" checks="WhitespaceAround"/>
+	<suppress files="LangChain4j.java" checks="AvoidEscapedUnicodeCharacters"/>
 
 </suppressions>

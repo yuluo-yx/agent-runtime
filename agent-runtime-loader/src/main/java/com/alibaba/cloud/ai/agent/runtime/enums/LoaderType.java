@@ -22,26 +22,24 @@ package com.alibaba.cloud.ai.agent.runtime.enums;
 import com.alibaba.cloud.ai.agent.runtime.common.enums.IEnum;
 
 /**
+ * Agent configuration loader types.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public enum LoaderType implements IEnum {
-
 
     YAML("YAML", "Load agents from YAML configuration files."),
     JSON("JSON", "Load agents from JSON configuration files."),
     CLASSPATH("CLASSPATH", "Load agents from classpath resources."),
-    JAR("JAR", "Load agents from JAR configuration files."),
-
-    ;
+    JAR("JAR", "Load agents from JAR configuration files.");
 
 
     private final String name;
 
     private final String desc;
 
-    LoaderType(String name, String desc) {
+    LoaderType(final String name, final String desc) {
         this.name = name;
         this.desc = desc;
     }

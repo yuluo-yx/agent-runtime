@@ -20,16 +20,15 @@
 package com.alibaba.cloud.ai.agent.runtime;
 
 /**
+ * Agent Runtime Schema Checker.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public class AgentRuntimeSchemaChecker implements IAgentRuntimeSchemaChecker {
 
-
-
     @Override
-    public Boolean check(AgentRuntimeSchema agentRuntimeSchema) {
+    public Boolean check(final AgentRuntimeSchema agentRuntimeSchema) {
         return null;
     }
 }

@@ -22,19 +22,20 @@ package com.alibaba.cloud.ai.agent.runtime;
 import com.alibaba.cloud.ai.agent.runtime.common.enums.IEnum;
 
 /**
+ * Agent runtime supported frameworks.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public enum AgentFramework implements IEnum {
 
+    AUTOGEN("AutoGen", "A framework for generating AI agents and applications using large language models."),
     LANGGRAPH("Langgraph", "An open-source framework for building AI agents and applications using large language models."),
-    SPRING_AI_ALIBABA_GRAPH("Spring AI Alibaba Graph", "A framework developed by Alibaba for creating AI agents and applications using large language models."),
-    AUTOGEN("AutoGen", "A framework for generating AI agents and applications using large language models.");
-
-    private final String name;
+    SPRING_AI_ALIBABA_GRAPH("Spring AI Alibaba Graph", "A framework developed by Alibaba for creating AI agents and applications using large language models.");
 
     private final String desc;
+
+    private final String name;
 
     AgentFramework(final String name, final String desc) {
         this.name = name;

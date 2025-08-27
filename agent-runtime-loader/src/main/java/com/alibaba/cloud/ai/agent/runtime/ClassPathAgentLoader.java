@@ -20,9 +20,10 @@
 package com.alibaba.cloud.ai.agent.runtime;
 
 /**
+ * Load agent configurations from the classpath.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public class ClassPathAgentLoader {
 }

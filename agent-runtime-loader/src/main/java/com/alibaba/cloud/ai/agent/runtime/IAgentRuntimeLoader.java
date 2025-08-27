@@ -25,10 +25,11 @@ import com.alibaba.cloud.ai.agent.runtime.enums.LoaderType;
 import java.util.Map;
 
 /**
+ * Agent runtime loader interface.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public interface IAgentRuntimeLoader {
 
     Map<String, BaseAgent> load();

@@ -30,10 +30,11 @@ import com.alibaba.cloud.ai.graph.state.strategy.ReplaceStrategy;
 import java.util.Map;
 
 /**
+ * Spring AI Alibaba Graph Agent Application define.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public class GraphAgent {
 
     public CompiledGraph graph() throws GraphStateException {
@@ -49,32 +50,33 @@ public class GraphAgent {
 
                 .compile();
     }
-}
 
-class SetIdNode implements NodeAction {
+    static class SetIdNode implements NodeAction {
 
-    @Override
-    public Map<String, Object> apply(OverAllState state) throws Exception {
+        @Override
+        public Map<String, Object> apply(final OverAllState state) throws Exception {
 
-        String id = state.value("id", "");
-        if (id.isEmpty()) {
-            throw new RuntimeException("input id is null");
+            String id = state.value("id", "");
+            if (id.isEmpty()) {
+                throw new RuntimeException("input id is null");
+            }
+
+            return Map.of("id", id);
         }
-
-        return Map.of("id", id);
     }
-}
 
-class ReverseIdNode implements NodeAction {
+    static class ReverseIdNode implements NodeAction {
 
-    @Override
-    public Map<String, Object> apply(OverAllState state) throws Exception {
+        @Override
+        public Map<String, Object> apply(final OverAllState state) throws Exception {
 
-        String id = state.value("id", "");
-        if (id.isEmpty()) {
-            throw new RuntimeException("input id is null");
+            String id = state.value("id", "");
+            if (id.isEmpty()) {
+                throw new RuntimeException("input id is null");
+            }
+
+            return Map.of("id", new StringBuilder(id).reverse().toString());
         }
-
-        return Map.of("id", new StringBuilder(id).reverse().toString());
     }
+
 }

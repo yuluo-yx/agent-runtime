@@ -20,10 +20,11 @@
 package com.alibaba.cloud.ai.agent.runtime;
 
 /**
+ * Agent Runtime Schema Convertor.
+ *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-
 public interface IAgentRuntimeSchemaConvertor {
 
     // todo Spring Resource?
