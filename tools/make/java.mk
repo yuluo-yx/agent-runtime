@@ -47,3 +47,8 @@ spotless-apply: ## Run spotless and apply changes
 checkstyle-check: ## Checkstyle Check the code and output to target/checkstyle-report.xml
 	@$(LOG_TARGET)
 	mvnd -Dmvnd.connectTimeout=30000 -Dcheckstyle.skip=false -Dcheckstyle.output.file=checkstyle-report.xml checkstyle:check
+
+.PHONY: precommit
+precommit: ## Prepare push code, please exec.
+	@$(LOG_TARGET)
+	mvn clean install -Dmaven.test.skip=true

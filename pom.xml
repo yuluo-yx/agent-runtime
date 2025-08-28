@@ -55,6 +55,7 @@
         <module>agent-runtime-bom</module>
         <module>agent-runtime-schema</module>
         <module>agent-runtime-example</module>
+        <module>agent-runtime-executor</module>
     </modules>
 
     <scm>

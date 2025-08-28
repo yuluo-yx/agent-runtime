@@ -19,37 +19,17 @@
 
 package com.alibaba.cloud.ai.agent.runtime;
 
-import com.alibaba.cloud.ai.agent.runtime.common.enums.IEnum;
-
 /**
- * Agent runtime supported frameworks.
+ * Agent Runtime Schema Convertor for YAML format.
  *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public enum AgentFramework implements IEnum {
 
-    ADK_JAVA("ADK-Java", "A framework for generating AI agents and applications using large language models."),
-    LANGGRAPH4J("LangGraph4J", "An open-source framework for building AI agents and applications using large language models."),
-    SPRING_AI_ALIBABA_GRAPH("Spring AI Alibaba Graph", "A framework developed by Alibaba for creating AI agents and applications using large language models.");
-
-    private final String desc;
-
-    private final String name;
-
-    AgentFramework(final String name, final String desc) {
-        this.name = name;
-        this.desc = desc;
-    }
+public class YamlAgentRuntimeSchemaConvertor implements IAgentRuntimeSchemaConvertor {
 
     @Override
-    public String getName() {
-        return name;
+    public AgentRuntimeSchema convert() {
+        return null;
     }
-
-    @Override
-    public String getDesc() {
-        return desc;
-    }
-
 }

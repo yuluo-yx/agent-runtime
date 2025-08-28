@@ -30,7 +30,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>agent-runtime-saa-graph-adapter</module>
-        <module>agent-runtime-langgraph-adapter</module>
+        <module>agent-runtime-langgraph4j-adapter</module>
+        <module>agent-runtime-adk-java-adapter</module>
     </modules>
 
     <properties>

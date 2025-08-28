@@ -90,11 +90,10 @@ public class Application {
     private static BaseAgent initAgent() {
 
         ChatModel chatModel = OllamaChatModel.builder()
-                .baseUrl("https://dashscope.aliyuncs.com/compatible-mode")
-                .modelName("qwen-plus")
+                .baseUrl("http://localhost:11434")
+                .modelName("llama3.1")
                 .build();
 
-        // 转为 adk 支持的 ChatModel
         LangChain4j modelAdapter = new LangChain4j(chatModel);
 
         return LlmAgent.builder()
