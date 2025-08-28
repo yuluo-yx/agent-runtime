@@ -1,0 +1,10 @@
+{
+  "name": "MyAgent",
+  "version": "1.0.0",
+  "description": "A demo agent for testing.",
+  "framework": "Spring AI Alibaba Graph",
+  "envs": [
+    {"JAVA_HOME": "/usr/lib/jvm/java-17"},
+    {"AGENT_MODE": "test"}
+  ]
+}

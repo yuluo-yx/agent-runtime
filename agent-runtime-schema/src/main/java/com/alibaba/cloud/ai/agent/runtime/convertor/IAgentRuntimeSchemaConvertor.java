@@ -17,19 +17,18 @@
  * under the License.
  */
 
-package com.alibaba.cloud.ai.agent.runtime;
+package com.alibaba.cloud.ai.agent.runtime.convertor;
+
+import com.alibaba.cloud.ai.agent.runtime.AgentRuntimeSchema;
 
 /**
- * Agent Runtime Schema Convertor for YAML format.
+ * Agent Runtime Schema Convertor.
  *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
+public interface IAgentRuntimeSchemaConvertor {
 
-public class YamlAgentRuntimeSchemaConvertor implements IAgentRuntimeSchemaConvertor {
-
-    @Override
-    public AgentRuntimeSchema convert() {
-        return null;
-    }
+    // todo Spring Resource?
+    AgentRuntimeSchema convert();
 }

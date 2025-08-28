@@ -17,16 +17,34 @@
  * under the License.
  */
 
-package com.alibaba.cloud.ai.agent.runtime;
+package com.alibaba.cloud.ai.agent.runtime.convertor;
+
+import com.alibaba.cloud.ai.agent.runtime.AgentRuntimeSchema;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Agent Runtime Schema Convertor.
+ * Agent Runtime Schema Convertor for JSON format.
  *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public interface IAgentRuntimeSchemaConvertor {
+public final class JSONAgentRuntimeSchemaConvertor extends AbstractAgentRuntimeSchemaConvertor {
 
-    // todo Spring Resource?
-    AgentRuntimeSchema convert();
+    public JSONAgentRuntimeSchemaConvertor(String resourcePath) {
+        super(resourcePath);
+    }
+
+    @Override
+    public AgentRuntimeSchema doConvert() {
+
+        try {
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            return mapper.readValue(this.fileReader, AgentRuntimeSchema.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to convert JSON to AgentRuntimeSchema", e);
+        }
+    }
+
 }

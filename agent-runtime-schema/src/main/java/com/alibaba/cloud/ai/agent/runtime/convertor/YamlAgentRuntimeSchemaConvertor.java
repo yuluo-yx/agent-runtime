@@ -17,19 +17,33 @@
  * under the License.
  */
 
-package com.alibaba.cloud.ai.agent.runtime;
+package com.alibaba.cloud.ai.agent.runtime.convertor;
+
+import com.alibaba.cloud.ai.agent.runtime.AgentRuntimeSchema;
+import org.yaml.snakeyaml.Yaml;
 
 /**
- * Agent Runtime Schema Convertor for JSON format.
+ * Agent Runtime Schema Convertor for YAML format.
  *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public class JSONAgentRuntimeSchemaConvertor implements IAgentRuntimeSchemaConvertor {
+public final class YamlAgentRuntimeSchemaConvertor extends AbstractAgentRuntimeSchemaConvertor {
 
-    @Override
-    public AgentRuntimeSchema convert() {
-        return null;
+    public YamlAgentRuntimeSchemaConvertor(String resourcePath) {
+        super(resourcePath);
     }
+    
+    @Override
+    public AgentRuntimeSchema doConvert() {
 
+        try {
+
+            Yaml yaml = new Yaml();
+
+            return yaml.loadAs(this.fileReader, AgentRuntimeSchema.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to convert YAML to AgentRuntimeSchema", e);
+        }
+    }
 }
