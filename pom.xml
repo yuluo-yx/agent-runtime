@@ -47,15 +47,15 @@
     </developers>
 
     <modules>
-        <module>agent-runtime-loader</module>
-        <module>agent-runtime-common</module>
-        <module>agent-runtime-deploy</module>
         <module>agent-runtime-api</module>
         <module>agent-runtime-adapter</module>
         <module>agent-runtime-bom</module>
-        <module>agent-runtime-schema</module>
+        <module>agent-runtime-common</module>
+        <module>agent-runtime-deploy</module>
         <module>agent-runtime-example</module>
         <module>agent-runtime-executor</module>
+        <module>agent-runtime-loader</module>
+        <module>agent-runtime-schema</module>
     </modules>
 
     <scm>
