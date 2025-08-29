@@ -56,6 +56,7 @@
         <module>agent-runtime-executor</module>
         <module>agent-runtime-loader</module>
         <module>agent-runtime-schema</module>
+        <module>agent-runtime-sandbox</module>
     </modules>
 
     <scm>
