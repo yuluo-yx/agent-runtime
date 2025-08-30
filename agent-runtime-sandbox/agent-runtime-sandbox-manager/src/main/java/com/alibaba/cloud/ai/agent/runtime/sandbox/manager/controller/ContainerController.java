@@ -19,10 +19,10 @@
 
 package com.alibaba.cloud.ai.agent.runtime.sandbox.manager.controller;
 
-import com.alibaba.cloud.ai.agent.runtime.sandbox.common.enums.SandboxType;
-import com.alibaba.cloud.ai.agent.runtime.sandbox.common.model.ContainerModel;
-import com.alibaba.cloud.ai.agent.runtime.sandbox.manager.service.ContainerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alibaba.cloud.ai.agent.runtime.sandbox.core.enums.SandboxType;
+import com.alibaba.cloud.ai.agent.runtime.sandbox.core.model.ContainerModel;
+import com.alibaba.cloud.ai.agent.runtime.sandbox.core.service.ContainerService;
+import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +36,7 @@ import java.util.UUID;
 @RequestMapping("/containers")
 public class ContainerController {
 
-	@Autowired
+	@Resource
 	private ContainerService containerService;
 
 	/**

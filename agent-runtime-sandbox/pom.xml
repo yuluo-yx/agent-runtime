@@ -12,8 +12,7 @@
 
     <modules>
         <module>agent-runtime-sandbox-manager</module>
-        <module>agent-runtime-sandbox-client</module>
-        <module>agent-runtime-sandbox-common</module>
+        <module>agent-runtime-sandbox-core</module>
     </modules>
 
     <properties>
@@ -31,7 +30,11 @@
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>com.alibaba.cloud.ai</groupId>
+                <artifactId>agent-runtime-sandbox-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!-- Docker Java -->
             <dependency>
                 <groupId>com.github.docker-java</groupId>

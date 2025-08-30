@@ -19,11 +19,11 @@
 
 package com.alibaba.cloud.ai.agent.runtime.sandbox.manager.controller;
 
-import com.alibaba.cloud.ai.agent.runtime.sandbox.common.model.ExecutionResult;
-import com.alibaba.cloud.ai.agent.runtime.sandbox.manager.service.ExecutionService;
+import com.alibaba.cloud.ai.agent.runtime.sandbox.core.model.ExecutionResult;
+import com.alibaba.cloud.ai.agent.runtime.sandbox.core.service.ExecutionService;
+import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +41,7 @@ public class ExecutionController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ExecutionController.class);
 
-	@Autowired
+	@Resource
 	private ExecutionService executionService;
 
 	/**
