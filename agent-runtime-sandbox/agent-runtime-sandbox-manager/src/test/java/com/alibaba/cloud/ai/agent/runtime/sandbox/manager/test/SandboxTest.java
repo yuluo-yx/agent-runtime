@@ -5,8 +5,6 @@ import com.alibaba.cloud.ai.agent.runtime.sandbox.core.model.ExecutionResult;
 import com.alibaba.cloud.ai.agent.runtime.sandbox.core.exceptions.SandboxClientException;
 import com.alibaba.cloud.ai.agent.runtime.sandbox.core.client.SandboxClientFactory;
 import com.alibaba.cloud.ai.agent.runtime.sandbox.core.client.SandboxSession;
-import com.alibaba.cloud.ai.agent.runtime.sandbox.core.properties.SandboxProperties;
-import com.alibaba.cloud.ai.agent.runtime.sandbox.core.service.ContainerService;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,6 +36,8 @@ public class SandboxTest {
 
 				System.out.println("Session created: " + session.getSessionId());
 				System.out.println("Container URL: " + session.getBaseUrl());
+
+				System.out.println("Sandbox session status is " + session.isHealthy());
 
 				// Example 1: Execute Python code
 				System.out.println("\n=== Python Code Execution ===");

@@ -19,6 +19,7 @@
 
 package com.alibaba.cloud.ai.agent.runtime.sandbox.core.model;
 
+import com.alibaba.cloud.ai.agent.runtime.sandbox.core.enums.SandboxType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -53,7 +54,7 @@ public class ContainerModel {
 	private List<Integer> ports;
 
 	@NotBlank
-	private String version;
+	private String sandboxType;
 
 	@JsonProperty("runtime_token")
 	private String runtimeToken;
@@ -67,12 +68,12 @@ public class ContainerModel {
 	public ContainerModel() {
 	}
 
-	public ContainerModel(String sessionId, String containerId, String baseUrl, List<Integer> ports, String version) {
+	public ContainerModel(String sessionId, String containerId, String baseUrl, List<Integer> ports, String sandboxType) {
 		this.sessionId = sessionId;
 		this.containerId = containerId;
 		this.baseUrl = baseUrl;
 		this.ports = ports;
-		this.version = version;
+		this.sandboxType = sandboxType;
 	}
 
 	// Getters and Setters
@@ -124,13 +125,6 @@ public class ContainerModel {
 		this.ports = ports;
 	}
 
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
 
 	public String getRuntimeToken() {
 		return runtimeToken;
@@ -156,10 +150,18 @@ public class ContainerModel {
 		this.mountDir = mountDir;
 	}
 
+	public String getSandboxType() {
+		return sandboxType;
+	}
+
+	public void setSandboxType(String sandboxType) {
+		this.sandboxType = sandboxType;
+	}
+
 	@Override
 	public String toString() {
 		return "ContainerModel{" + "sessionId='" + sessionId + '\'' + ", containerId='" + containerId + '\''
-				+ ", baseUrl='" + baseUrl + '\'' + ", ports=" + ports + ", version='" + version + '\'' + '}';
+				+ ", baseUrl='" + baseUrl + '\'' + ", ports=" + ports + ", sandboxType" + sandboxType + '\'' + '}';
 	}
 
 }

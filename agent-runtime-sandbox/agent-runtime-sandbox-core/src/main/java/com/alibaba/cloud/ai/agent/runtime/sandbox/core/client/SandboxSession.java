@@ -19,6 +19,7 @@
 
 package com.alibaba.cloud.ai.agent.runtime.sandbox.core.client;
 
+import com.alibaba.cloud.ai.agent.runtime.sandbox.core.enums.SandboxType;
 import com.alibaba.cloud.ai.agent.runtime.sandbox.core.exceptions.SandboxClientException;
 import com.alibaba.cloud.ai.agent.runtime.sandbox.core.model.ContainerModel;
 import com.alibaba.cloud.ai.agent.runtime.sandbox.core.model.ExecutionResult;
@@ -34,7 +35,7 @@ public class SandboxSession implements AutoCloseable {
 
 	private static final Logger logger = LoggerFactory.getLogger(SandboxSession.class);
 
-	private final ContainerModel container;
+	private ContainerModel container;
 
 	private final SandboxHttpClient httpClient;
 
@@ -138,7 +139,7 @@ public class SandboxSession implements AutoCloseable {
 	 * Get sandbox type
 	 */
 	public String getSandboxType() {
-		return container.getVersion();
+		return container.getSandboxType();
 	}
 
 	/**
@@ -151,7 +152,7 @@ public class SandboxSession implements AutoCloseable {
 	/**
 	 * Restart the session (recreate container)
 	 */
-	public void restart() throws SandboxClientException {
+	public void restart(){
 		logger.info("Restarting sandbox session: {}", container.getSessionId());
 
 		// Close current resources
@@ -169,8 +170,13 @@ public class SandboxSession implements AutoCloseable {
 		catch (SandboxClientException e) {
 			logger.warn("Failed to delete old container during restart", e);
 		}
-
-		throw new SandboxClientException("Session restart not fully implemented. Please create a new session.");
+		// Create new container with same session ID
+		try {
+			this.container = managerClient.createContainer(SandboxType.fromValue(getSandboxType()), getSessionId());
+		}catch (SandboxClientException e) {
+			logger.error("Failed to create new container during restart", e);
+			throw new SandboxClientException("Failed to restart session: " + container.getSessionId());
+		}
 	}
 
 	/**
