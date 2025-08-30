@@ -129,7 +129,7 @@ public class ContainerService {
 				.withPortBindings(buildPortBindings(ports))
 				.withHostConfig(HostConfig.newHostConfig()
 					.withPortBindings(buildPortBindings(ports))
-//					.withAutoRemove(true)
+					// .withAutoRemove(true)
 					.withNetworkMode("bridge"))
 				.exec();
 

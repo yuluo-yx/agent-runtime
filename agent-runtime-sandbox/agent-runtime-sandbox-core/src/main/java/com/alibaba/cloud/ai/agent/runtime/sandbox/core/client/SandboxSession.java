@@ -152,7 +152,7 @@ public class SandboxSession implements AutoCloseable {
 	/**
 	 * Restart the session (recreate container)
 	 */
-	public void restart(){
+	public void restart() {
 		logger.info("Restarting sandbox session: {}", container.getSessionId());
 
 		// Close current resources
@@ -173,7 +173,8 @@ public class SandboxSession implements AutoCloseable {
 		// Create new container with same session ID
 		try {
 			this.container = managerClient.createContainer(SandboxType.fromValue(getSandboxType()), getSessionId());
-		}catch (SandboxClientException e) {
+		}
+		catch (SandboxClientException e) {
 			logger.error("Failed to create new container during restart", e);
 			throw new SandboxClientException("Failed to restart session: " + container.getSessionId());
 		}

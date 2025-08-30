@@ -19,7 +19,6 @@
 
 package com.alibaba.cloud.ai.agent.runtime.sandbox.core.model;
 
-import com.alibaba.cloud.ai.agent.runtime.sandbox.core.enums.SandboxType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -68,7 +67,8 @@ public class ContainerModel {
 	public ContainerModel() {
 	}
 
-	public ContainerModel(String sessionId, String containerId, String baseUrl, List<Integer> ports, String sandboxType) {
+	public ContainerModel(String sessionId, String containerId, String baseUrl, List<Integer> ports,
+			String sandboxType) {
 		this.sessionId = sessionId;
 		this.containerId = containerId;
 		this.baseUrl = baseUrl;
@@ -124,7 +124,6 @@ public class ContainerModel {
 	public void setPorts(List<Integer> ports) {
 		this.ports = ports;
 	}
-
 
 	public String getRuntimeToken() {
 		return runtimeToken;

@@ -21,6 +21,7 @@ public class SandboxTest {
 	private SandboxClientFactory factory;
 
 	@Test
+	@DisplayName("Sandbox Client Test")
 	public void test() {
 		try {
 			// Check if manager is healthy
