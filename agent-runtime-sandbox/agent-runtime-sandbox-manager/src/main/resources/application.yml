@@ -1,0 +1,83 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: sandbox-manager
+  profiles:
+    active: dev
+
+
+# Sandbox configuration
+sandbox:
+  # Service settings
+  host: "0.0.0.0"
+  port: 8080
+  bearer-token: "dev-token-123"
+  
+  # Container settings
+  default-sandbox-type: "BASE"
+  pool-size: 10
+  container-prefix-key: "sandbox-"
+  auto-cleanup: true
+  
+  # Docker settings
+  docker-host: "unix:///var/run/docker.sock"
+  docker-environment:
+    PYTHONPATH: "/workspace"
+    WORKSPACE_DIR: "/workspace"
+  
+  # Port range for containers
+  port-range:
+    - 9000
+    - 9999
+  
+  # Deployment type
+  deployment-type: "DOCKER"
+  
+  # Storage settings
+  storage-type: "LOCAL"
+  storage-path: "/tmp/sandbox-storage"
+
+
+# Logging configuration
+logging:
+  level:
+    com.agentscope.sandbox: DEBUG
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+---
+# Development profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+sandbox:
+  bearer-token: "dev-token-123"
+  auto-cleanup: true
+
+logging:
+  level:
+    root: INFO
+    com.agentscope.sandbox: DEBUG
+
+---
+# Production profile
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+sandbox:
+  bearer-token: "${SANDBOX_SECRET_TOKEN:}"
+  auto-cleanup: false
+  
+logging:
+  level:
+    root: WARN
+    com.agentscope.sandbox: INFO
