@@ -29,6 +29,5 @@ import com.alibaba.cloud.ai.agent.runtime.AgentRuntimeSchema;
  */
 public interface IAgentRuntimeSchemaConvertor {
 
-    // todo Spring Resource?
     AgentRuntimeSchema convert();
 }

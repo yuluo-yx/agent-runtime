@@ -17,41 +17,51 @@
  * under the License.
  */
 
-package com.alibaba.cloud.ai.agent.runtime.enums;
+package com.alibaba.cloud.ai.agent.runtime;
 
 import com.alibaba.cloud.ai.agent.runtime.common.enums.IEnum;
 
 /**
- * Agent configuration loader types.
- *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public enum LoaderType implements IEnum {
 
-    YAML("YAML", "Load agents from YAML configuration files."),
-    JSON("JSON", "Load agents from JSON configuration files."),
-    CLASSPATH("CLASSPATH", "Load agents from classpath resources."),
-    JAR("JAR", "Load agents from JAR configuration files.");
+public enum AgentConfigTypes implements IEnum {
 
+    YAML("Yaml", "runtime.config.yaml types"),
+    YML("Yml", "runtime.config.yml types"),
+    JSON("JSON", "runtime.config.json types."),
+    PROPERTIES("Properties", "runtime.config.properties types.");
 
     private final String name;
 
     private final String desc;
 
-    LoaderType(final String name, final String desc) {
+    AgentConfigTypes(final String name, final String desc) {
         this.name = name;
         this.desc = desc;
     }
 
     @Override
     public String getName() {
-        return "";
+
+        return this.name;
     }
 
     @Override
     public String getDesc() {
-        return "";
+
+        return this.desc;
     }
 
+    public static AgentConfigTypes fromExtension(String ext) {
+
+        for (AgentConfigTypes type : values()) {
+            if (type.name.equalsIgnoreCase(ext)) {
+                return type;
+            }
+        }
+
+        throw new IllegalArgumentException("Unsupported resource type: " + ext);
+    }
 }

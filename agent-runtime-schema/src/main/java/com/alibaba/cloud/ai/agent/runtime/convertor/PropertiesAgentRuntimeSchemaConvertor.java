@@ -19,6 +19,7 @@
 
 package com.alibaba.cloud.ai.agent.runtime.convertor;
 
+import com.alibaba.cloud.ai.agent.runtime.AgentFramework;
 import com.alibaba.cloud.ai.agent.runtime.AgentRuntimeSchema;
 
 import java.util.*;
@@ -46,7 +47,7 @@ public final class PropertiesAgentRuntimeSchemaConvertor extends AbstractAgentRu
             builder.name(props.getProperty("name"));
             builder.version(props.getProperty("version"));
             builder.description(props.getProperty("description"));
-            builder.framework(props.getProperty("framework"));
+            builder.framework(AgentFramework.valueOf(props.getProperty("framework")));
 
             List<Map<String, String>> envs = new ArrayList<>();
             Map<Integer, Map<String, String>> envMap = new HashMap<>();

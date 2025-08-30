@@ -20,26 +20,25 @@
 package com.alibaba.cloud.ai.agent.runtime;
 
 import com.alibaba.cloud.ai.agent.runtime.common.model.BaseAgent;
+import com.alibaba.cloud.ai.agent.runtime.loader.AbstractAgentRuntimeLoader;
 
 /**
- * Agent runtime loader interface.
+ * Test, to be deleted.
  *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public interface IAgentRuntimeLoader {
 
-    BaseAgent load();
+public class Main {
 
-    default void stop() {}
+    public static void main(String[] args) {
 
-    default void start() {}
+        IAgentRuntimeLoader agentRuntimeLoader = AbstractAgentRuntimeLoader
+                .createLoader("/Users/shown/workspace/java/open_source/agent-runtime/agent-runtime-schema/src/main/resources/runtime.config.json");
+        BaseAgent agent = agentRuntimeLoader.load();
 
-    default Boolean hotReloading() {
+        System.out.println(agent);
 
-        return false;
     }
-
-    LoaderType getLoaderType();
 
 }

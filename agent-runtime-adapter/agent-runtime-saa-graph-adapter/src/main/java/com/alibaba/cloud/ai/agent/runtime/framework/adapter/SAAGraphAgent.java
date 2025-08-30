@@ -17,13 +17,14 @@
  * under the License.
  */
 
-package com.alibaba.cloud.ai.agent.runtime;
+package com.alibaba.cloud.ai.agent.runtime.framework.adapter;
+
+import com.alibaba.cloud.ai.agent.runtime.common.model.BaseAgent;
 
 /**
- * Load agent configurations from the classpath.
- *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public class ClassPathAgentLoader {
+
+public class SAAGraphAgent extends BaseAgent {
 }

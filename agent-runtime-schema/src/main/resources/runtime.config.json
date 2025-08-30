@@ -1,0 +1,12 @@
+{
+  "name": "MyAgent",
+  "version": "1.0.0",
+  "description": "A demo agent for testing.",
+  "framework": "SPRING_AI_ALIBABA_GRAPH",
+  "envs": [
+    {"JAVA_HOME": "/usr/lib/jvm/java-17"},
+    {"AGENT_MODE": "test"}
+  ],
+  "types": "YAML",
+  "schema": "/Users/shown/workspace/java/open_source/agent-runtime/agent-runtime-schema/src/main/resources/saa-graph.yaml"
+}

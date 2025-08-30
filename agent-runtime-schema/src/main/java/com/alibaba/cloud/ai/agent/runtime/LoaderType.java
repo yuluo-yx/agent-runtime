@@ -19,27 +19,43 @@
 
 package com.alibaba.cloud.ai.agent.runtime;
 
-import com.alibaba.cloud.ai.agent.runtime.common.model.BaseAgent;
+import com.alibaba.cloud.ai.agent.runtime.common.enums.IEnum;
 
 /**
- * Agent runtime loader interface.
+ * Agent configuration loader types.
+ *
+ * JAVA_FILE:
+ * ClassPath:
+ * Yaml:
  *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public interface IAgentRuntimeLoader {
+public enum LoaderType implements IEnum {
 
-    BaseAgent load();
+    YAML("YAML", "Load agents from YAML configuration files."),
+    SPI("SPI", "Load agents from JAR configuration files."),
+    CLASSPATH("CLASSPATH", "Load agents from classpath resources.");
 
-    default void stop() {}
+    private final String name;
 
-    default void start() {}
+    private final String desc;
 
-    default Boolean hotReloading() {
-
-        return false;
+    LoaderType(final String name, final String desc) {
+        this.name = name;
+        this.desc = desc;
     }
 
-    LoaderType getLoaderType();
+    @Override
+    public String getName() {
+
+        return this.name;
+    }
+
+    @Override
+    public String getDesc() {
+
+        return this.desc;
+    }
 
 }

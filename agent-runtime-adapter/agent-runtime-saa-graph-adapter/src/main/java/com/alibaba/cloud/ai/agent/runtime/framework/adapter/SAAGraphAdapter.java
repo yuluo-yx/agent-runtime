@@ -17,29 +17,22 @@
  * under the License.
  */
 
-package com.alibaba.cloud.ai.agent.runtime;
+package com.alibaba.cloud.ai.agent.runtime.framework.adapter;
 
-import com.alibaba.cloud.ai.agent.runtime.common.model.BaseAgent;
+import java.io.Reader;
 
 /**
- * Agent runtime loader interface.
+ * todo: add interface, poc impl.
  *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public interface IAgentRuntimeLoader {
 
-    BaseAgent load();
+public class SAAGraphAdapter {
 
-    default void stop() {}
+    public static SAAGraphAgent convert(Reader agentRuntimeSchema) {
 
-    default void start() {}
-
-    default Boolean hotReloading() {
-
-        return false;
+        return new SAAGraphAgent();
     }
-
-    LoaderType getLoaderType();
 
 }

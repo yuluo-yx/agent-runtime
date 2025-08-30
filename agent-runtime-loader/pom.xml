@@ -37,7 +37,7 @@
     <dependencies>
         <dependency>
             <groupId>com.alibaba.cloud.ai</groupId>
-            <artifactId>agent-runtime-common</artifactId>
+            <artifactId>agent-runtime-saa-graph-adapter</artifactId>
             <version>${revision}</version>
         </dependency>
     </dependencies>

@@ -54,7 +54,17 @@ public final class AgentRuntimeSchema implements Serializable {
      * Agent Framework.
      * e.g. LangGraph, Spring AI Alibaba Graph, AutoGen, etc.
      */
-    private String framework;
+    private AgentFramework framework;
+
+    /**
+     * Agent types
+     */
+    private LoaderType types;
+
+    /**
+     * Agent schema or java class or classpath.
+     */
+    private String schema;
 
     /**
      * Agent Environment.
@@ -93,12 +103,42 @@ public final class AgentRuntimeSchema implements Serializable {
         this.description = description;
     }
 
-    public String getFramework() {
+    public LoaderType getTypes() {
+        return types;
+    }
+
+    public void setTypes(final LoaderType types) {
+        this.types = types;
+    }
+
+    public String getSchema() {
+        return schema;
+    }
+
+    public void setSchema(final String schema) {
+        this.schema = schema;
+    }
+
+    public AgentFramework getFramework() {
         return framework;
     }
 
-    public void setFramework(final String framework) {
+    public void setFramework(final AgentFramework framework) {
         this.framework = framework;
+    }
+
+    @Override
+    public String toString() {
+
+        return "AgentRuntimeSchema{" +
+                "name='" + name + '\'' +
+                ", version='" + version + '\'' +
+                ", description='" + description + '\'' +
+                ", framework=" + framework +
+                ", types=" + types +
+                ", schema='" + schema + '\'' +
+                ", envs=" + envs +
+                '}';
     }
 
     public static Builder builder() {
@@ -128,7 +168,7 @@ public final class AgentRuntimeSchema implements Serializable {
             return this;
         }
 
-        public Builder framework(final String framework) {
+        public Builder framework(final AgentFramework framework) {
             this.agentRuntimeSchema.setFramework(framework);
             return this;
         }

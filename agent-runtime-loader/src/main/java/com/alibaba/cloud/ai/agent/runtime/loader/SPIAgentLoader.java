@@ -17,29 +17,29 @@
  * under the License.
  */
 
-package com.alibaba.cloud.ai.agent.runtime;
+package com.alibaba.cloud.ai.agent.runtime.loader;
 
+import com.alibaba.cloud.ai.agent.runtime.LoaderType;
 import com.alibaba.cloud.ai.agent.runtime.common.model.BaseAgent;
 
 /**
- * Agent runtime loader interface.
- *
  * @author yuluo
  * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
  */
-public interface IAgentRuntimeLoader {
 
-    BaseAgent load();
+public class SPIAgentLoader extends AbstractAgentRuntimeLoader {
 
-    default void stop() {}
+    private static final LoaderType SPI_LOADER = LoaderType.SPI;
 
-    default void start() {}
+    @Override
+    protected BaseAgent loader() {
 
-    default Boolean hotReloading() {
-
-        return false;
+        return null;
     }
 
-    LoaderType getLoaderType();
+    @Override
+    public LoaderType getLoaderType() {
 
+        return SPI_LOADER;
+    }
 }

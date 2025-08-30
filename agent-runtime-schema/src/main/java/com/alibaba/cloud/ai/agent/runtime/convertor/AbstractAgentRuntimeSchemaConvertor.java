@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.Objects;
 
+import static com.alibaba.cloud.ai.agent.runtime.AgentConfigTypes.*;
+
 /**
  * Abstract base class for Agent Runtime Schema Convertors.
  * Provides common behaviors for all convertors.
@@ -36,12 +38,6 @@ public abstract class AbstractAgentRuntimeSchemaConvertor implements IAgentRunti
         } catch (FileNotFoundException e) {
             throw new AgentRuntimeException(e);
         }
-    }
-
-    public AbstractAgentRuntimeSchemaConvertor(Reader fileReader) {
-
-        assert Objects.nonNull(fileReader) : "File reader must not be null";
-        this.fileReader = fileReader;
     }
 
     public static AbstractAgentRuntimeSchemaConvertor createConvertor(String resourcePath) {
